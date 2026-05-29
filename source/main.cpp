@@ -10,7 +10,8 @@ public:
         { return ProjectInfo::versionString; }
     bool moreThanOneInstanceAllowed() override { return true; }
 
-    void initialise(const juce::String&) override
+    //Starts the gui
+    void initialise(const juce::String&) override 
     {
         mainWindow.reset(new MainWindow(
             getApplicationName()));
@@ -18,6 +19,7 @@ public:
 
     void shutdown() override { mainWindow = nullptr; }
 
+    //actual stuff in the window
     struct MainWindow : public juce::DocumentWindow
     {
         MainWindow(juce::String name)
@@ -29,7 +31,7 @@ public:
                 DocumentWindow::allButtons)
         {
             setUsingNativeTitleBar(true);
-            setContentOwned(new MainComponent(), true);
+            setContentOwned(new MainComponent(), true); //puts the stuff in mainComponent on the screen
             setResizable(true, true);
             centreWithSize(getWidth(), getHeight());
             setVisible(true);
