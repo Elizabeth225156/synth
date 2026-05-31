@@ -2,16 +2,12 @@
 #include <JuceHeader.h>
 #include "SineWaveSound.h"
 
-struct SineWaveVoice : public juce::SynthesiserVoice
-{
-    bool canPlaySound(juce::SynthesiserSound* sound) override
-    {
+struct SineWaveVoice : public juce::SynthesiserVoice {
+    bool canPlaySound(juce::SynthesiserSound* sound) override {
         return dynamic_cast<SineWaveSound*>(sound) != nullptr;
     }
 
-    void startNote(int midiNoteNumber, float velocity,
-                   juce::SynthesiserSound*, int) override
-    {
+    void startNote(int midiNoteNumber, float velocity, juce::SynthesiserSound*, int) override {
         frequency = juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber);
         phase = 0.0;
         amplitude = velocity;

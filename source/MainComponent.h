@@ -4,10 +4,7 @@
 #include "SineWaveVoice.h"
 #include "OscilloscopeComponent.h"
 
-class MainComponent : public juce::AudioAppComponent,
-                      public juce::Slider::Listener,
-                      public juce::Button::Listener
-{
+class MainComponent : public juce::AudioAppComponent, public juce::Slider::Listener, public juce::Button::Listener{
 public:
     MainComponent();
     ~MainComponent() override;
@@ -34,15 +31,15 @@ private:
         juce::MidiKeyboardComponent::horizontalKeyboard
     };
 
-    // Oscilloscope
+    //oscilloscope
     OscilloscopeComponent oscilloscope;
 
-    // ADSR
+    //ADSR
     juce::Slider attackSlider, decaySlider, sustainSlider, releaseSlider;
     juce::Label  attackLabel,  decayLabel,  sustainLabel,  releaseLabel;
     juce::ADSR::Parameters adsrParams { 0.1f, 0.1f, 0.8f, 0.5f };
 
-    // Filter
+    //filter
     juce::Slider cutoffSlider, resonanceSlider;
     juce::Label  cutoffLabel,  resonanceLabel;
     juce::TextButton filterTypeButton { "Low-pass" };
@@ -50,7 +47,7 @@ private:
     float cutoffHz  = 2000.0f;
     float resonance = 1.0f;
 
-    // Panel bounds stored for paint()
+    //panel bounds
     juce::Rectangle<int> adsrPanel, filterPanel, scopePanel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainComponent)
